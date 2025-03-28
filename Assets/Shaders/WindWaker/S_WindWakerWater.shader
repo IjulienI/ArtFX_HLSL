@@ -101,7 +101,7 @@ Shader "WindWaker/Water"
                 v.vertex = WaveAnimation(v.vertex, v.vertex.xy);
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.screenPosition = ComputeScreenPos(o.vertex);
-                o.waterUV = TRANSFORM_TEX(v.waterUV, _WaterPattern);
+                o.waterUV = 
                 o.noiseUV = TRANSFORM_TEX(v.uv, _FoamTex);
                 o.flowUV = TRANSFORM_TEX(v.flowUV, _FlowTex);
                 o.darkWaterUV = o.waterUV + (0.2, 0.2);
