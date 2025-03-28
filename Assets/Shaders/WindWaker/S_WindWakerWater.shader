@@ -104,7 +104,7 @@ Shader "WindWaker/Water"
                 o.waterUV = 
                 o.noiseUV = TRANSFORM_TEX(v.uv, _FoamTex);
                 o.flowUV = TRANSFORM_TEX(v.flowUV, _FlowTex);
-                o.darkWaterUV = o.waterUV + (0.2, 0.2);
+                o.darkWaterUV = o.waterUV + float2(0.2, 0.2);
                 return o;
             }
 

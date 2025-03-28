@@ -105,7 +105,7 @@ Material:
     - _Speed: 0.1
     - _SrcBlend: 1
     - _Start: 0.6
-    - _SurfaceNoiseCutoff: 0.903
+    - _SurfaceNoiseCutoff: 1
     - _UVSec: 0
     - _WaveAmplitude: 1
     - _WaveFrequency: 15
