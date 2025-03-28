@@ -2,21 +2,27 @@ Shader "WindWaker/Water"
 {    
     Properties
     {
-        _ShallowColor ("ShallowColor", Color) = (0.325, 0.807, 0.971, 1)
-        _DeepColor ("DeepColor", Color) = (0.086, 0.407, 1, 1)
-        _DarkShallowColor ("DarkShallowColor", Color) = (0.086, 0.407, 1, 1)
+        _ShallowColor ("Shallow Color", Color) = (0.325, 0.807, 0.971, 1)
+        _DeepColor ("Deep Color", Color) = (0.086, 0.407, 1, 1)
+        _DarkShallowColor ("Dark Shallow Color", Color) = (0.086, 0.407, 1, 1)
         _DepthMaxDistance ("Depth Maximum Distance", Float) = 1
-        _WaterPattern ("WaterPattern", 2D) = "white" {}
+        _WaterPattern ("Water Pattern", 2D) = "white" {}
         _FlowTex ("Flow", 2D) = "white" {}
-        _FlowStengh ("FlowStrengh", Float) = 1.0
-        _FlowSpeed ("FlowSpeed", Float) = 1.0
+        _FlowStengh ("Flow Strengh", Float) = 1.0
+        _FlowSpeed ("Flow Speed", Float) = 1.0
+        
+        _WaveNoise ("Wave Noise", 2D) = "white" {}
+        _WaveSpeed ("Wave Speed", Float) = 1.0
+        _WaveStrengh ("Wave Strengh", Float) = 1
+        _WaveTrajectory ("Wave Trajectory", Vector) = (0.5,0.5,0,0)
+        
         _FoamTex ("Foam", 2D) = "white" {}
         _SurfaceNoiseCutoff ("Surface Noise Cutoff", Range(0, 1)) = 0.777
-        _FoamDistance ("FoamDistance", Float) = 1.0
-        _Speed ("FoamSpeed", Range(0, 2)) = 1.0
-        _Trajectoire ("FoamTrajectory", Vector) = (0.5,0.5,0,0)
-        _WaveFrequency ("WaveFrequency", Float) = 1.0
-        _WaveAmplitude ("WaveAmplitude", Float) = 1.0
+        _FoamDistance ("Foam Distance", Float) = 1.0
+        _Speed ("Foam Speed", Range(0, 2)) = 1.0
+        _Trajectoire ("Foam Trajectory", Vector) = (0.5,0.5,0,0)
+        _WaveFrequency ("Wave Frequency", Float) = 1.0
+        _WaveAmplitude ("Wave Amplitude", Float) = 1.0
     }
     
     SubShader
@@ -51,6 +57,12 @@ Shader "WindWaker/Water"
             uniform float _FlowStengh;
             uniform float _FlowSpeed;
 
+            uniform sampler2D _WaveNoise;
+            uniform float4 _WaveNoise_ST;
+            uniform  float _WaveSpeed;
+            uniform float _WaveStrengh;
+            uniform float4 _WaveTrajectory;
+
             uniform sampler2D _FoamTex;
             uniform float4 _FoamTex_ST;
 
@@ -74,6 +86,7 @@ Shader "WindWaker/Water"
                 float4 uv : TEXCOORD0;
                 float4 flowUV : TEXCOORD1;
                 float4 waterUV : TEXCOORD3;
+                float4 waterNoise : TEXCOORD5;
             };
 
             struct VertexOutput
@@ -98,11 +111,12 @@ Shader "WindWaker/Water"
                 v.uv = v.uv + (_Time * _Speed) * _Trajectoire;
                 v.flowUV = v.flowUV + (_Time * _Speed) * _Trajectoire;
                 v.waterUV = v.flowUV;
-                v.vertex = WaveAnimation(v.vertex, v.vertex.xy);
+                v.waterNoise = v.waterNoise + (_Time.x * _WaveSpeed) * _WaveTrajectory;
+                v.vertex.y += tex2Dlod(_WaveNoise, v.waterNoise) * _WaveStrengh;
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.screenPosition = ComputeScreenPos(o.vertex);
-                o.waterUV = 
+                o.screenPosition = ComputeScreenPos(o.vertex);                
                 o.noiseUV = TRANSFORM_TEX(v.uv, _FoamTex);
+                o.waterUV = o.noiseUV;
                 o.flowUV = TRANSFORM_TEX(v.flowUV, _FlowTex);
                 o.darkWaterUV = o.waterUV + float2(0.2, 0.2);
                 return o;

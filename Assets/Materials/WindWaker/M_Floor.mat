@@ -84,8 +84,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _WallAlbedo:
-        m_Texture: {fileID: 2800000, guid: e93d5d106499f3e40ad2f2aa141ec11c, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: cbcc4e73097dd3e40b58a56740e83ab3, type: 3}
+        m_Scale: {x: 1, y: 2}
         m_Offset: {x: 0, y: 0}
     - _WaterPattern:
         m_Texture: {fileID: 0}
