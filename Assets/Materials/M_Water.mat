@@ -45,11 +45,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _FlowTex:
         m_Texture: {fileID: 2800000, guid: 6f1e1ca16f54500468d06d8f4d1ef20e, type: 3}
-        m_Scale: {x: 25, y: 25}
+        m_Scale: {x: 2.5, y: 2.5}
         m_Offset: {x: 0, y: 0}
     - _FoamTex:
         m_Texture: {fileID: 2800000, guid: 8f81d0606b8fe9944b8a2cac86a34860, type: 3}
-        m_Scale: {x: 50, y: 50}
+        m_Scale: {x: 2.5, y: 2.5}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 6f1e1ca16f54500468d06d8f4d1ef20e, type: 3}
@@ -77,11 +77,11 @@ Material:
         m_Offset: {x: 1, y: 1}
     - _WaterPattern:
         m_Texture: {fileID: 2800000, guid: d70e4cd1398254f49ba6955b38467d22, type: 3}
-        m_Scale: {x: 50, y: 50}
+        m_Scale: {x: 5, y: 5}
         m_Offset: {x: 0, y: 0}
     - _WaveNoise:
         m_Texture: {fileID: 2800000, guid: 8f81d0606b8fe9944b8a2cac86a34860, type: 3}
-        m_Scale: {x: 25, y: 25}
+        m_Scale: {x: 2.5, y: 2.5}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
@@ -92,8 +92,8 @@ Material:
     - _DetailNormalMapScale: 1
     - _DisplacementStrengh: 2
     - _DstBlend: 0
-    - _FlowSpeed: 1
-    - _FlowStengh: 0.1
+    - _FlowSpeed: 0.79
+    - _FlowStengh: -0.15
     - _FoamDistance: 5
     - _Frequency: 15
     - _GlossMapScale: 1
@@ -113,8 +113,8 @@ Material:
     - _UVSec: 0
     - _WaveAmplitude: 1
     - _WaveFrequency: 15
-    - _WaveSpeed: 0.5
-    - _WaveStrengh: 5
+    - _WaveSpeed: 2.23
+    - _WaveStrengh: 0.3
     - _Width: 0.4
     - _ZWrite: 1
     m_Colors:
